@@ -1,6 +1,7 @@
 ---
-import { SITE } from "@config";
+import { SITE, SITE_INFO } from "@config";
 import "@styles/base.css";
+import getRoot from "@components/getRoot";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -31,8 +32,8 @@ const socialImageURL = new URL(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/icon.svg" /> -->
-    <link rel="icon" href="/logo.ico" />
+    <!-- <link rel="icon" type="image/svg+xml" href={getRoot("/icon.svg")} /> -->
+    <link rel="icon" href={getRoot("/logo.ico")} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
@@ -41,7 +42,7 @@ const socialImageURL = new URL(
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
-    <link rel="sitemap" href="/sitemap-index.xml"/>
+    <link rel="sitemap" href={getRoot("/sitemap-index.xml")}/>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={title} />
@@ -76,7 +77,7 @@ const socialImageURL = new URL(
       )
     }
 
-    <script is:inline src="/toggle-theme.js"></script>
+    <script is:inline src={getRoot("/toggle-theme.js")}></script>
   </head>
   <body>
     <slot />

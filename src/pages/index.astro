@@ -9,6 +9,7 @@ import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
 import slugify from "@utils/slugify";
+import getRoot from "@components/getRoot";
 import { SOCIALS, MAIN_INFO } from "@config";
 
 const posts = await getCollection("blog");
@@ -26,7 +27,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       <h1>{MAIN_INFO.title}</h1>
       <a
         target="_blank"
-        href="/rss.xml"
+        href={getRoot("/rss.xml")}
         class="rss-link"
         aria-label="rss feed"
         title="RSS Feed"
@@ -111,7 +112,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         }
       </ul>
       <div class="all-posts-btn-wrapper">
-        <LinkButton href="/posts">
+        <LinkButton href={getRoot("/posts")}>
           All Posts
           <svg xmlns="http://www.w3.org/2000/svg"
             ><path

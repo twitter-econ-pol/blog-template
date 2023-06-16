@@ -1,34 +1,38 @@
 import type { Site, SocialObjects } from "./types";
+import urlJoin from 'url-join';
+import blogInfo from '../blog-user-info.json';
+
+export const SITE_INFO = {
+  site: blogInfo.baseurl,
+  base: blogInfo.base,
+  website: urlJoin(blogInfo.baseurl, blogInfo.base),
+  root: urlJoin('/', blogInfo.base),
+  logo: urlJoin('/', blogInfo.base, )
+}
+
+export function atRoot(path: string): string {
+  return urlJoin(SITE_INFO.root, path);
+}
+
 
 export const SITE: Site = {
-  website: "https://twitter-econ-pol.github.io/blog-template",
-  author: "Econ/Politics Twitter",
-  desc: "A minimal, responsive and SEO-friendly blog theme for anyone",
-  title: "Twitter Econ/Pol Blog Template",
-  ogImage: "Twitter-Econ-Pol-Banner.png",
+  website: SITE_INFO.website,
+  author: blogInfo.author,
+  desc: blogInfo.desc,
+  title: blogInfo.title,
+  ogImage: urlJoin(SITE_INFO.root, blogInfo.ogImage),
   lightAndDarkMode: true,
   postPerPage: 3,
 };
 
-export const MAIN_INFO = {
-  title: "A minimalistic modern blog for anyone.",
-  description: `This template is intended to be reused for anyone wishing to set up their own small blog for free.\
-  The goal is that anyone able to write simple plain text files should get their own blog with little help.
-  `,
-  signature: {
-    start: "This template and website",
-    url: "https://twitter.com/arno_shae",
-    urltext: "was made with 💜 by @arno_shae",
-    end: "hope you like it !"
-  }
-};
+export const MAIN_INFO = blogInfo.main;
 
 export const LOCALE = ["en-EN"]; // set to [] to use the environment default
 
 export const LOGO_IMAGE = {
   enable: true,
   svg: true,
-  width: 108,
+  width: 112,
   height: 23,
 };
 
